@@ -60,3 +60,31 @@ var extractRootDomain = function(url) {
     domain = parts[1]+'.'+parts[0];
     return domain;
 };
+
+
+var httpGetSync = function(theUrl, callback){
+    var xmlHttp = new XMLHttpRequest(); // create the http request object
+
+    // Set up an event listener for when the request is returned.
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    // Create the request.
+    xmlHttp.open("GET", theUrl, false); // true for asynchronous
+    xmlHttp.send(null);
+};
+
+// Quick function to make an http request.
+var httpPostSync = function(theUrl, callback){
+    var xmlHttp = new XMLHttpRequest(); // create the http request object
+
+    // Set up an event listener for when the request is returned.
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    // Create the request.
+    xmlHttp.open("POST", theUrl, false); // true for asynchronous
+    xmlHttp.send(null);
+};
