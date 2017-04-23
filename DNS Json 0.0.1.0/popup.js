@@ -8,32 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     var urlA = 'https://dns.google.com/resolve?name=' + domainUrlNs + '&type=a';
     var urlC = 'https://dns.google.com/resolve?name=' + domainUrlC + '&type=cname';
     var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
-    
+ 
     //console.log(urlW);
-    console.log(urlC);
+    //console.log(urlC);
     httpGetAsync(urlNS, function(response){
       var data = JSON.parse(response);
 
       // Get the DOM elements.
       var ns1 = document.getElementById('ns1');
       var ns2 = document.getElementById('ns2');
-      var urlnsss = document.getElementById('urlnss');
-      //var urlT = document.getElementById('url');
 
       // Set the text of the elements.
       ns1.innerHTML = data.Answer[0].data;
       ns2.innerHTML = data.Answer[1].data;
-      urlnsss.innerHTML = urlNS;
+
+      var tabUrl = document.getElementById('tab');
+      tabUrl.innerHTML = domainUrlNs;
 
     });
 
-    //console.log(url);
     httpGetAsync(urlA, function(response){
       var data = JSON.parse(response);
-      // Get the DOM elements.
-      var tabUrl = document.getElementById('tab');
-      tabUrl.innerHTML = domainUrlC;
-
+      
       var a1 = document.getElementById('a1');
       // Set the text of the elements.
       a1.innerHTML = data.Answer[0].data;
