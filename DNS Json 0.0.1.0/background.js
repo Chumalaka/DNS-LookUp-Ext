@@ -9,10 +9,10 @@ var updateLocation = function(){
     let nsWix = [];
     let ns = [];
 
-    var domainUrlNs = extractRootDomain(tab.url);
+    //var domainUrlNs = extractRootDomain(tab.url);
     
-    var urlNS = 'http://www.dns-lg.com/ch03/' + domainUrlNs + '/ns';
-    var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
+    //var urlNS = 'http://www.dns-lg.com/ch03/' + domainUrlNs + '/ns';
+    //var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
 
     //var url = 'http://ip-api.com/json/' + extractRootDomain(tab.url); 
     // The url we will be making the GET request to.

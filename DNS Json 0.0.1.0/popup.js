@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var domainUrlNs = extractRootDomain(tab.url);
     var domainUrlC = extractHostname(tab.url);
     // The urls we will be making the GET request to.
-    var urlNS = 'http://www.dns-lg.com/ch03/' + domainUrlNs + '/ns';
-    var urlA = 'http://www.dns-lg.com/ch03/' + domainUrlNs + '/a';
-    var urlC = 'http://www.dns-lg.com/ch03/' + domainUrlC + '/cname';
+    var urlNS = 'https://dns.google.com/resolve?name=' + domainUrlNs + '&type=ns';
+    var urlA = 'https://dns.google.com/resolve?name=' + domainUrlNs + '&type=a';
+    var urlC = 'https://dns.google.com/resolve?name=' + domainUrlC + '&type=cname';
     var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
     
     //console.log(urlW);
@@ -17,11 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // Get the DOM elements.
       var ns1 = document.getElementById('ns1');
       var ns2 = document.getElementById('ns2');
+      var urlnsss = document.getElementById('urlnss');
       //var urlT = document.getElementById('url');
 
       // Set the text of the elements.
-      ns1.innerHTML = data.answer[0].rdata;
-      ns2.innerHTML = data.answer[1].rdata;
+      ns1.innerHTML = data.Answer[0].data;
+      ns2.innerHTML = data.Answer[1].data;
+      urlnsss.innerHTML = urlNS;
 
     });
 
@@ -34,14 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       var a1 = document.getElementById('a1');
       // Set the text of the elements.
-      a1.innerHTML = data.answer[0].rdata;
+      a1.innerHTML = data.Answer[0].data;
     });
 
     httpGetAsync(urlC, function(response){
       var data = JSON.parse(response);
       var cname1 = document.getElementById('cname1');
 
-      cname1.innerHTML = data.answer[0].rdata;
+      cname1.innerHTML = data.Answer[0].data;
     });
 
     httpPostAsync(urlW, function(response){
