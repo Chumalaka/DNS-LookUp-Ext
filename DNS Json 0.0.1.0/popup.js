@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Set the text of the elements.
       ns1.innerHTML = data.Answer[0].data;
       ns2.innerHTML = data.Answer[1].data;
-      domainNS.LookUp = [data.Answer[0].data, data.Answer[1].data];
 
       var tabUrl = document.getElementById('tab');
       tabUrl.innerHTML = domainUrlNs;

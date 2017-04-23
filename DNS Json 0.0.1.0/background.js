@@ -4,7 +4,6 @@ var updateLocation = function(){
   chrome.tabs.getSelected(null, function(tab) {
 
     chrome.browserAction.setBadgeText({text: ''});
-    //chrome.browserAction.setBadgeBackgroundColor({color: ''});
 
     var domainNS = {};
     var domainUrlNs = extractRootDomain(tab.url);
@@ -41,7 +40,7 @@ var updateLocation = function(){
 
     var comp = '';
 
-    if (domainNS.Wix[0] === '') {
+    if (domainNS.Wix[0] === '' || ['wixpress.com', 'google.com', 'youtube.com', 'gmail.com'].indexOf(domainUrlNs) >= 0 ) {
       comp = '';
     } else {
       comp = domainNS.LookUp[0].includes(domainNS.Wix[0]) || domainNS.LookUp[0].includes(domainNS.Wix[1]);
