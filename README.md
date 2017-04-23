@@ -1,1 +1,1 @@
-# MyExtensions
+# DNS LookUp Google Chrome Extension
