@@ -6,7 +6,7 @@ var updateLocation = function(){
     chrome.browserAction.setBadgeText({text: ''});
 
     var domainNS = {};
-    var knownDomains = ['wixpress.com', 'wixanswers.com', 'google.com', 'youtube.com', 'gmail.com'];
+    var knownDomains = ['wix.com','wixpress.com', 'wixanswers.com', 'google.com', 'youtube.com', 'gmail.com'];
     var domainUrlNs = extractRootDomain(tab.url);
     var urlNS = 'https://dns.google.com/resolve?name=' + domainUrlNs + '&type=ns';
     var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
