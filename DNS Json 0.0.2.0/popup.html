@@ -20,6 +20,25 @@
   </style>
   <script src="helper.js"></script>
   <script src="popup.js"></script>
+  <script>
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://domain-troubleshooter.wix.com/_api/domain-troubleshooter-server/premiumData",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "postman-token": "5a1a1bb9-1d07-0f17-68e7-35232744e6de"
+      },
+      "processData": false,
+      "data": "{\"domain\":\"josephdscs.com\",\"isAdmin\":\"false\"}"
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log("hola",response);
+    });
+  </script>
 </head>
 
 <body>

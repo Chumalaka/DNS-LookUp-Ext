@@ -6,10 +6,19 @@ var updateLocation = function () {
     chrome.browserAction.setBadgeText({ text: '' });
 
     var domainNS = {};
-    var knownDomains = ['wix.com', 'wixpress.com', 'wixanswers.com', 'google.com', 'youtube.com', 'gmail.com', 'github.com', 'cnn.com', ''];
+    var knownDomains = ['wix.com', 'wixpress.com', 'wixanswers.com', 'google.com', 'youtube.com', 'gmail.com', 'github.com', 'cnn.com', 'whatsapp.com', ''];
     var domainUrlNs = extractRootDomain(tab.url);
     var urlNS = 'https://dns.google.com/resolve?name=' + domainUrlNs + '&type=ns';
-    var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
+    var urlW = 'https://domain-troubleshooter.wix.com/_api/domain-troubleshooter-server/premiumData';
+
+
+    var body = JSON.stringify({
+      "domain": domainUrlNs,
+      "isAdmin": false
+    });
+
+
+    //var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
 
     //console.log('read google');
     httpGetSync(urlNS, function (response) {
@@ -19,20 +28,36 @@ var updateLocation = function () {
 
     });
     //console.log('done google');
-
-    //console.log('read Wix');
-    httpPostSync(urlW, function (response) {
-      try {
-        var data = JSON.parse(response);
-        domainNS.Wix = [data.nameserver2, data.nameserver1];
-      } catch (e) {
-        console.log(e);
-        domainNS.Wix = ['', ''];
-      };
-      //console.log(domainNS);
-    });
-    //console.log('done Wix');
-    //console.log('comp');
+    /*
+        //console.log('read Wix');
+        httpPostSync(urlW, function (response) {
+          try {
+            var data = JSON.parse(response);
+            domainNS.Wix = [data.nameserver2, data.nameserver1];
+          } catch (e) {
+            console.log(e);
+            domainNS.Wix = ['', ''];
+          };
+          //console.log(domainNS);
+        });
+        //console.log('done Wix');
+        //console.log('comp');*/
+    /*
+        //console.log('read Wix');
+        httpPostSync2(urlW, body, function (response) {
+          try {
+            var data = JSON.parse(response);
+            domainNS.Wix = [data.nameserver2, data.nameserver1];
+          } catch (e) {
+            console.log(e);
+            domainNS.Wix = ['', ''];
+          };
+          //console.log(domainNS);
+        });
+        //console.log('done Wix');
+        //console.log('comp');
+    
+      */
 
     var comp = '';
 

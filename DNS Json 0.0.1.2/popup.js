@@ -1,6 +1,29 @@
+const win = window;
+
 document.addEventListener('DOMContentLoaded', function () {
+  /* chrome.tabs.get(null, function (tab) {
+     chrome.windows.get(tab.windowId, function (win) {
+       console.log(win); // THIS IS THE WINDOW OBJECT
+     });
+   });
+ */
+  chrome.tabs.executeScript(null, { code: 'window;' }, function (results) {
+    console.log("upppp", results[0]);
+  });
+
+  console.log("out", tab.windowId);
+  console.log("tabwin", tab.window);
+  console.log("window", window);
+  //console.log("window",window);
   // Get the current tab so we can extract the url.
   chrome.tabs.getSelected(null, function (tab) {
+
+    console.log("in", tab.windowId);
+
+    chrome.windows.get(tab.windowId, function (win) {
+      console.log(win); // THIS IS THE WINDOW OBJECT
+    });
+
     var domainUrlNs = extractRootDomain(tab.url);
     var domainUrlC = extractHostname(tab.url);
     // The urls we will be making the GET request to.
@@ -9,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var urlC = 'https://dns.google.com/resolve?name=' + domainUrlC + '&type=cname';
     var urlW = 'https://bo.wixpress.com/bo/api/s3/domain/services/getWixDomain?domainName=' + domainUrlNs;
     //var domainNS = {};
+
+    var elementsOS = getOldStore(win);
+    console.log(JSON.stringify(elementsOS, null, 2));
+    var oldstore = document.getElementById('oldstore');
+    oldstore.innerHTML = JSON.stringify(elementsOS, null, 2);
 
     //console.log(urlW);
     //console.log(urlC);
@@ -63,5 +91,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
+    httpGetSync(urlNS, function (response) {
+      var data = JSON.parse(response);
+
+      // Get the DOM elements.
+      var ns1 = document.getElementById('ns1');
+      var ns2 = document.getElementById('ns2');
+
+      // Set the text of the elements.
+      ns1.innerHTML = data.Answer[0].data;
+      ns2.innerHTML = data.Answer[1].data;
+
+      var tabUrl = document.getElementById('tab');
+      tabUrl.innerHTML = domainUrlNs;
+
+    });
+
+  }).executeScript(null, { code: 'window;' }, function (results) {
+    console.log("dowwwwwn", results[0]);
   });
 });

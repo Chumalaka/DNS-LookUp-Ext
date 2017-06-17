@@ -1,23 +1,24 @@
 // Quick function to make an http request.
-var httpGetAsync = function(theUrl, callback){
+var httpGetAsync = function (theUrl, callback) {
     var xmlHttp = new XMLHttpRequest(); // create the http request object
 
     // Set up an event listener for when the request is returned.
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
     // Create the request.
     xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
+
 };
 
 // Quick function to make an http request.
-var httpPostAsync = function(theUrl, callback){
+var httpPostAsync = function (theUrl, callback) {
     var xmlHttp = new XMLHttpRequest(); // create the http request object
 
     // Set up an event listener for when the request is returned.
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
@@ -46,7 +47,7 @@ var extractHostname = function (url) {
 
 
 // to address those who want the "root domain"
-var extractRootDomain = function(url) {
+var extractRootDomain = function (url) {
     var domain = extractHostname(url);
     var parts = domain.split('.').reverse();
     var cnt = parts.length;
@@ -57,16 +58,16 @@ var extractRootDomain = function(url) {
             return domain;
         }
     }
-    domain = parts[1]+'.'+parts[0];
+    domain = parts[1] + '.' + parts[0];
     return domain;
 };
 
 
-var httpGetSync = function(theUrl, callback){
+var httpGetSync = function (theUrl, callback) {
     var xmlHttp = new XMLHttpRequest(); // create the http request object
 
     // Set up an event listener for when the request is returned.
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
@@ -76,11 +77,11 @@ var httpGetSync = function(theUrl, callback){
 };
 
 // Quick function to make an http request.
-var httpPostSync = function(theUrl, callback){
+var httpPostSync = function (theUrl, callback) {
     var xmlHttp = new XMLHttpRequest(); // create the http request object
 
     // Set up an event listener for when the request is returned.
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
